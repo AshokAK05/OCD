@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      background-color:white;
+      border-radius: 30px;
+      padding-bottom: 30px;
+      margin-top: 100px;
+    }
+    body {
+     background-color: antiquewhite;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Payment Details</h2>
+    <form>
+      <div class="form-group">
+        <label for="name">Name on Card</label>
+        <input type="text" class="form-control" id="name" placeholder="John Doe">
+      </div>
+      <div class="form-group">
+        <label for="card-number">Card Number</label>
+        <input type="text" class="form-control" id="card-number" placeholder="1234 5678 9012 3456">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="expiry-date">Expiration Date</label>
+          <input type="text" class="form-control" id="expiry-date" placeholder="MM/YY">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="cvv">CVV</label>
+          <input type="text" class="form-control" id="cvv" placeholder="123">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="billing-address">Billing Address</label>
+        <input type="text" class="form-control" id="billing-address" placeholder="123 Street, City, Country">
+      </div>
+      <div class="form-group">
+        <label for="payment-method">Payment Method</label>
+        <select class="form-control" id="payment-method">
+          <option value="card">Credit/Debit Card</option>
+          <option value="net-banking">Net Banking</option>
+          <option value="upi">UPI</option>
+        </select>
+      </div>
+      <div class="form-group" id="net-banking-options" style="display: none;">
+        <label for="bank">Select Bank</label>
+        <select class="form-control" id="bank">
+          <option value="icici">ICICI Bank</option>
+          <option value="hdfc">HDFC Bank</option>
+          <option value="axis">Axis Bank</option>
+          <option value="sbi">State Bank of India</option>
+          <!-- Add more banks here -->
+        </select>
+      </div>
+      <div class="form-group" id="upi-options" style="display: none;">
+        <label for="upi">Select UPI Provider</label>
+        <select class="form-control" id="upi">
+          <option value="google-pay">Google Pay</option>
+          <option value="phonepe">PhonePe</option>
+          <option value="paytm">Paytm</option>
+          <!-- Add more UPI providers here -->
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Pay Now</button>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#payment-method').change(function() {
+        var selectedMethod = $(this).val();
+        
+        if (selectedMethod === 'net-banking') {
+          $('#net-banking-options').show();
+          $('#upi-options').hide();
+        } else if (selectedMethod === 'upi') {
+          $('#net-banking-options').hide();
+          $('#upi-options').show();
+        } else {
+          $('#net-banking-options').hide();
+          $('#upi-options').hide();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
